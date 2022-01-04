@@ -450,7 +450,7 @@ void loop() {
 
   checksensor();
 
-  readSerial();
+  //readSerial();
 
   check_timmers();
   
@@ -549,77 +549,6 @@ void checksensor(){
 
 }
 
-void reset_command_buffer(){
-
-  for (int i = 0; i < 50 ;i++){
-    command_buffer[i] = 0;
-  }
-  command_buffer_pointer = 0;
-}
-void readSerial(){
-
-  //LEEMOS DEL SERIAL
-  int incoming;
-  if (Serial.available() > 0) {
-
-    // read the incoming byte:
-
-    incoming = Serial.read();
-    //comandos
-    //lsensor List sensor
-    //lactuator List actuators
-    //laction  List of actions
-
-    //lroomscene list of room  scene
-    //lsceneactuators 
-
-    if (incoming == (int) ';'){
-      process_buffer();
-    }
-    else{
-      command_buffer[command_buffer_pointer] = incoming ;
-      command_buffer_pointer++;
-    }
-
-    /*
-    if (incoming == 101){
-     int x = readInt();
-     
-     
-     for (int i = 0 ; i < NUM_ACTUATOR ; i++){
-     
-     if (  actuator[i].id == x ){
-     actuator[i].state = 1; 
-     digitalWrite( actuator[i].port, actuator[i].state);
-     Serial.print("Activating actuator: ");
-     Serial.println(actuator[i].id, DEC);
-     }
-     }
-     }
-     else if (incoming == 100){
-     int x = readInt();
-     
-     
-     for (int i = 0 ; i < NUM_ACTUATOR ; i++){
-     if (  actuator[i].id == x ){
-     actuator[i].state = 0; 
-     digitalWrite( actuator[i].port, actuator[i].state);
-     Serial.print("DEActivating actuator: ");
-     Serial.println(actuator[i].id, DEC);
-     }
-     }
-     }
-     else{
-     Serial.print("Reciving incorrect data ");
-     
-     }
-     */
-  }
-
-
-
-}
-
 
 void addRoom(short i  ) {
   if( i != 0){
@@ -666,10 +595,6 @@ void addAction(int id_sensor,int action_type, int id_actuator ){
 }
 
 
-
-
-
-
 void addSceneActuator(int id_scene, int id_actuator, int mode_actuator  ){
   scene_actuator[NUM_SCENE_ACTUATOR].id_scene  =id_scene;
   scene_actuator[NUM_SCENE_ACTUATOR].id_actuator  =id_actuator;
@@ -688,23 +613,7 @@ void addScene ( short id_scene, short id_room){
 }
 
 
-int readInt (){
-  int x;
-  while  (Serial.available() <= 0) {
 
-  }
-  x =( Serial.read()-48) *10;       
-
-  while  (Serial.available() <= 0) {
-
-  }
-  x += Serial.read()-48;
-
-
-
-  return x;
-
-}
 void  sensor_button_click(int id_sensor){
   if (DEBUG_MODE){
     Serial.print("Sensor ");
@@ -919,8 +828,6 @@ void check_timmers(){
   }
 }
 
-
-
 void switch_actuator(int id_actuator){
   for ( int y = 0; y < NUM_ACTUATOR; y++){
     if (actuator[y].id == id_actuator){
@@ -988,6 +895,118 @@ void switch_actuator_triple(int id_actuator,int state){
 
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+void reset_command_buffer(){
+
+  for (int i = 0; i < 50 ;i++){
+    command_buffer[i] = 0;
+  }
+  command_buffer_pointer = 0;
+}
+ void readSerial(){
+
+  //LEEMOS DEL SERIAL
+  int incoming;
+  if (Serial.available() > 0) {
+
+    // read the incoming byte:
+
+    incoming = Serial.read();
+    //comandos
+    //lsensor List sensor
+    //lactuator List actuators
+    //laction  List of actions
+
+    //lroomscene list of room  scene
+    //lsceneactuators 
+
+    if (incoming == (int) ';'){
+      process_buffer();
+    }
+    else{
+      command_buffer[command_buffer_pointer] = incoming ;
+      command_buffer_pointer++;
+    }
+
+    /*
+    if (incoming == 101){
+     int x = readInt();
+     
+     
+     for (int i = 0 ; i < NUM_ACTUATOR ; i++){
+     
+     if (  actuator[i].id == x ){
+     actuator[i].state = 1; 
+     digitalWrite( actuator[i].port, actuator[i].state);
+     Serial.print("Activating actuator: ");
+     Serial.println(actuator[i].id, DEC);
+     }
+     }
+     }
+     else if (incoming == 100){
+     int x = readInt();
+     
+     
+     for (int i = 0 ; i < NUM_ACTUATOR ; i++){
+     if (  actuator[i].id == x ){
+     actuator[i].state = 0; 
+     digitalWrite( actuator[i].port, actuator[i].state);
+     Serial.print("DEActivating actuator: ");
+     Serial.println(actuator[i].id, DEC);
+     }
+     }
+     }
+     else{
+     Serial.print("Reciving incorrect data ");
+     
+     }
+     
+  }
+}
+
+int readInt (){
+  int x;
+  while  (Serial.available() <= 0) {
+
+  }
+  x =( Serial.read()-48) *10;       
+
+  while  (Serial.available() <= 0) {
+
+  }
+  x += Serial.read()-48;
+
+
+
+  return x;
+
+}
+
 
 
 void process_buffer(){
@@ -1135,23 +1154,4 @@ void process_buffer(){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
