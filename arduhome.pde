@@ -207,8 +207,8 @@ void setup() {
   addRoom(2);
 
   //pasillo el solo
-  addSensor(4,17,1,2);
-  addSensor(7,4,1,2);
+  addSensor(4,17,1,2); //Interruptor Entrada
+  addSensor(7,4,1,2);  //Interruptor pasillo ( esquina)
   //Pasillo
   addActuator(4,45,0);
   //entrada..
@@ -356,10 +356,10 @@ void setup() {
   //addActuator(17,51,0);
 
   //Levantar persiana comedor
-  addActuator_triple(1,2,50,51,12);
+  addActuator_triple(1,2,50,51,20);
 
   //la otra
-  addActuator_triple(2,2,48,49,12);
+  addActuator_triple(2,2,48,49,20);
 
 
 
@@ -716,7 +716,8 @@ void  sensor_button_click(int id_sensor){
   int id_room=0;
   int last_scene = 0;
   int x_pointer =0;
-  Room   rr ;
+  Room rr;
+
   for (int  i = 0; i< NUM_SENSOR;i++){
     if (sensor[i].id == id_sensor){
 
@@ -724,7 +725,7 @@ void  sensor_button_click(int id_sensor){
       Serial.println(sensor[i].id_room);
       //buscamos la room...
       for (int x =0;x < NUM_ROOM;x++){
-        Serial.println(room[x].id_room);
+        //Serial.println(room[x].id_room);
         if (room[x].id_room == sensor[i].id_room){
 
           Serial.print("Room encontrada.. last scene vale = ");
