@@ -27,7 +27,7 @@ RELE 1
 8
 
 RELE 2
-1 Luz entrada
+1 Luz entrada principal
 2
 3 Luz comedor tele
 4 
@@ -42,10 +42,10 @@ RELE 3
 2 Luz sofa
 3 Despacho Estanteria
 4 Despacho encima
-5 Luz pasillo
+5 Luz pasillo distribuidor
 6 ?? Puede ser un sensor de movim..
 7 Dormitorio
-8 Pasillo
+8 Luz Pasillo delante despacho
 
 
 RELES MANUALES:
@@ -209,7 +209,7 @@ void setup() {
   //pasillo el solo
   addSensor(4,17,1,2); //Interruptor Entrada
   addSensor(7,4,1,2);  //Interruptor pasillo ( esquina)
-  //Pasillo
+  //Pasillo delante despacho
   addActuator(4,45,0);
   //entrada..
   addActuator(13,27,0);
