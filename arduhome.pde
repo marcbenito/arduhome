@@ -37,14 +37,15 @@ RELE 2
 8 Luces cocina alogenas
 
 
+
 RELE 3
-1
+1 Dormitorio
 2 Luz sofa
 3 Despacho Estanteria
 4 Despacho encima
 5 Luz pasillo distribuidor
 6 ?? Puede ser un sensor de movim..
-7 Dormitorio
+7 
 8 Luz Pasillo delante despacho
 
 
@@ -57,6 +58,15 @@ RELES MANUALES:
 --> sensor , sensor
 5 Comedor mesa
 
+
+
+Rele 4 ( vertical)
+1  Persiana comedor subir
+2  Persiana comedor bajar
+3  Persiana dormitorio subir
+4  Persiana dormitorio bajar
+5  Luz fluorescente cocina
+6
 
 
 
@@ -184,11 +194,9 @@ void setup() {
   addRoom(1);
 
 
-  //comedor tocando habitaciones (uno de los dos)
+  //comedor tocando habitaciones derecho
   addSensor(2,15,1,1);
-  //comedor tocando habitaciones (uno de los dos)
-  
-  //Comedor  ( de los 4 el 4o)
+  //comedor pasillo recibidor
   addSensor(11,7,1,1);
   //Comedor-Sofa
   addActuator(7,40,0);
@@ -207,8 +215,8 @@ void setup() {
   addRoom(2);
 
   //pasillo el solo
-  addSensor(4,17,1,2); //Interruptor Entrada
-  addSensor(7,4,1,2);  //Interruptor pasillo ( esquina)
+  addSensor(4,17,1,2); //Interruptor Pasillo esquina
+  addSensor(7,5,1,2);  //Interruptor pasillo ENTRADA
   //Pasillo delante despacho
   addActuator(4,45,0);
   //entrada..
@@ -217,13 +225,15 @@ void setup() {
   addScene(3,2);
   addSceneActuator(3,4,1);
   addSceneActuator(3,13,1);
+
+
   //-------------dormitori
 
   addRoom(3);
   //mesita noche, marc
   addSensor(13,11,1,3);
 
-  //Dormitorio OK
+  //Dormitorio principal
   addSensor(1,14,1,3);
 
   //mesita_NOCHE Cris 
@@ -257,10 +267,10 @@ void setup() {
   addScene(8,4);
 
   addSceneActuator(8,2,1);
+
+
   //-------------------invitados
   addRoom(5);
-
-
   //luz convidats
   addActuator(18,46,0);
   //Invitados mesita de dormir..
@@ -270,26 +280,27 @@ void setup() {
 
   addScene(9,5);
   addSceneActuator(9,18,1);
+
+
   //-------------------------lavavo
   addRoom(6);
-
-
-  //Lavavo OK 
+  //Lavavo
   addSensor(9,13,1,6);
-
   //Lavavo
   addActuator(15,22,0);
 
   addScene(11,6);
   addSceneActuator(11,15,1);
-  //----------------------------------cocina
-  addRoom(7);
 
-  //Cocina
+
+
+  //----------------cocina
+  addRoom(7);
   addActuator(5,38,0);
   addActuator(19,30,0);
-  //OK Pasillo  ( de los 4 el 3o)
+  //Sensor Pasillo-recibidor  ( de los 4 el 3o)
   addSensor(5,2,1,7);
+  //Sensor desde comedor derecho
   addSensor(6,9,1,7);
   addScene(12,7);
   addSceneActuator(12,5,1);
@@ -302,7 +313,7 @@ void setup() {
 
   //CASOS ESPECIALES....
   //Principal de casa...
-  addSensor(7,4,1,0);
+  addSensor(18,4,1,0);
 
 
   //DESCONOCIDOS
@@ -356,10 +367,10 @@ void setup() {
   //addActuator(17,51,0);
 
   //Levantar persiana comedor
-  addActuator_triple(1,2,50,51,20);
+  addActuator_triple(1,2,50,51,30);
 
   //la otra
-  addActuator_triple(2,2,48,49,20);
+  addActuator_triple(2,2,48,49,30);
 
 
 
@@ -374,8 +385,8 @@ void setup() {
   //persiana habitacion bajar...
   addAction(17,3,2);
 
-  switch_actuator_triple(1,100);
-  switch_actuator_triple(2,100);
+  switch_actuator_triple(1,120);
+  switch_actuator_triple(2,120);
   
 
   /*
